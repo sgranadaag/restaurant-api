@@ -19,7 +19,7 @@ exports.login = async (req, res) => {
   if (savedUser.password !== sha256(password))
     return res.status(401).send({ error: "Wrong credentials" });
 
-  const token = jwt.sign({ check: true }, process.env["API_TOKEN"], {
+  const token = jwt.sign({ check: true, userId: savedUser.id }, process.env["API_TOKEN"], {
     expiresIn: "7d",
   });
   return res.status(200).send(token);
@@ -59,8 +59,8 @@ exports.create = async (req, res) => {
   });
 
   try {
-    await createdUser.save();
-    const token = jwt.sign({ check: true }, process.env["API_TOKEN"], {
+    const savedUser = await createdUser.save();
+    const token = jwt.sign({ check: true, userId: savedUser.id }, process.env["API_TOKEN"], {
       expiresIn: "7d",
     });
 
