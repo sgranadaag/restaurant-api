@@ -2,24 +2,18 @@ const mongoose = require("mongoose");
 const { MenuItemSchema } = require("./menuItem.model");
 const AutoIncrement = require("mongoose-sequence")(mongoose);
 
-const UserSchema = mongoose.Schema(
+const RestaurantSchema = mongoose.Schema(
   {
     id: {
       type: Number,
       index: true,
       unique: true,
     },
-    user: {
+    name: {
       type: String,
-      index: true,
-      unique: true,
       required: true,
       trim: true,
-      minlength: 4,
-    },
-    password: {
-      type: String,
-      min: 256,
+      minlength: 3,
     },
     menuItems: {
       type: [MenuItemSchema],
@@ -31,6 +25,9 @@ const UserSchema = mongoose.Schema(
   }
 );
 
-UserSchema.plugin(AutoIncrement, { id: "id_user_seq", inc_field: "id" });
+RestaurantSchema.plugin(AutoIncrement, {
+  id: "id_restaurant_seq",
+  inc_field: "id",
+});
 
-module.exports = mongoose.model("user", UserSchema);
+module.exports = mongoose.model("restaurant", RestaurantSchema);
