@@ -17,7 +17,9 @@ app.use(bodyParser.json());
 app.use(cors());
 
 // routes
+
 require("./app/routes/auth.routes")(app);
+require("./app/routes/restaurant.routes")(app);
 
 // listen server port
 var port = process.env.PORT || 3000;
