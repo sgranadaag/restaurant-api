@@ -27,8 +27,8 @@ Endpoints disponibles:
 
 ## Contribución
 
-Santiago Granada Aguirre
-Estefani Girarldo
+  - Santiago Granada Aguirre
+  - Estefani Girarldo
 
 ## Licencia
 
