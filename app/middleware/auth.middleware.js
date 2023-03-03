@@ -9,14 +9,15 @@ exports.authMiddleware = async (req, res, next) => {
     const [isExpireToken] = await ExpireToken.find({ token });
     if (isExpireToken)
       return res.status(401).send({ error: "Your token has been expired" });
+
+    jwt.verify(token, process.env["API_TOKEN"], (error, decoded) => {
+      if (error) return res.status(401).send({ error: "Unauthorized" });
+      else {
+        req.decoded = decoded;
+        next();
+      }
+    });
   } catch (error) {
-    return;
+    return res.status(400).send(error);
   }
-  jwt.verify(token, process.env["API_TOKEN"], (error, decoded) => {
-    if (error) return res.status(401).send({ error: "Unauthorized" });
-    else {
-      req.decoded = decoded;
-      next();
-    }
-  });
 };
