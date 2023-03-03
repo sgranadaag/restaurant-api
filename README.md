@@ -4,10 +4,10 @@ API rest para compra y gestion de platos asociados a restaurantes
 
 ## Instalación
 
-descargar el proyecto
-ejecutar npm i
-copiar el archivo .env en la raiz del proyecto
-ejecutar npm run start
+  - descargar el proyecto
+  - ejecutar npm i
+  - copiar el archivo .env en la raiz del proyecto
+  - ejecutar npm run start
 
 
 ## Uso
