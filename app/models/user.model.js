@@ -24,6 +24,7 @@ const UserSchema = mongoose.Schema(
     menuItems: {
       type: [MenuItemSchema],
       default: [],
+      sparse: true,
     },
   },
   {
